@@ -148,6 +148,11 @@ fetch first 8 rows with ties;
 
 
 
-select *
-from employees 
-where employee_id=&dana;
+
+
+
+
+
+
+
+
