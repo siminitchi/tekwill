@@ -34,8 +34,19 @@ select exam_type
     ,trunc(months_between(sysdate,hire_date)) as months_worked
     ,trunc((sysdate-hire_date)/7) as weeks_worked
     ,add_months(sysdate,2)
-    ,next_day('23-jul-2018','friday')
+    ,next_day(sysdate,'friday')
+    ,last_day(sysdate)
     from employees
     order by 3 asc;
+    
+    select last_name
+    ,hire_date
+    ,trunc(months_between(sysdate,hire_date)) as months_worked
+    ,round(hire_date,'year')
+    ,trunc(hire_date,'day')
+    from employees
+    order by 3 asc;
+    
+    
     
     
