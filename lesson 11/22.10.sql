@@ -124,20 +124,6 @@ select a.last_name
  --  on a.job_id=b.job_id;
 select * from jobs;
 
-select job_title
-    ,department_name
-    ,last_name || ' ' || first_name
-   ,start_date
-    from job_history 
-    join departments 
-    using (department_id)
- join jobs 
- using (job_id)
-   join employees 
-   using (employee_id)
- where start_date>to_date('31-AUG-97' and end_date>'01-IAN-93';
-select * from job_history;
-
 
 select * from employees where employee_id=200;
     select * from job_history
@@ -145,4 +131,52 @@ select * from employees where employee_id=200;
    -- 7)Folosind "Using Join" scrieti un select pentru a afisa titlul jobului, numele departamentului,numele complet
 --si data cind a inceput anagajatul sa lucreze in o oarecare pozitie pentru toate joburile
 --care au inceput dupa 1 Ianuarie 1993 and si au finisat inainte de 31 August 1997
+
     --employee id = 200
+    
+    
+    
+--crieti un select pentru a afisa numele departamentului, salariul mediu pe departament si numarul
+--de angajati doar care primesc comision.
+    
+    select * from employees where commission_pct is not null;
+    
+    
+    select * from employees
+    order by department_id;
+    
+    
+    
+  select count(*) from employees where commission_pct is not null;
+
+
+select 
+    department_name  Departament
+    ,trunc(avg(salary)) Media
+    ,count(a.commission_pct)
+    from employees a
+    left join departments b
+    on a.department_id=b.department_id
+    where a.commission_pct is not null
+    group by department_name;
+    
+    
+    select * from employees where department_id is null;
+    
+    
+    
+    
+    
+    
+    
+    select job_title
+        ,department_name
+        ,last_name || ' ' || first_name
+        ,start_date
+        ,employee_id
+    from job_history
+    join jobs using(job_id)
+    join departments using(department_id)
+    join employees using (employee_id)
+    where start_date>=to_date('1993-01-01',' YYYY-MM-DD')
+    and start_date<=to_date('1997-08-31',' YYYY-MM-DD')
